@@ -1,4 +1,5 @@
-#include <SDL2/SDL.h>
+//#include <SDL2/SDL.h>
+#include "SDL2/include/SDL.h"
 #include "ihm.h"
 
 void ihm(int* e1, int* e2)

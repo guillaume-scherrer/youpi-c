@@ -1,6 +1,6 @@
 TARGET:=prog
 CFLAGS:=-c -O2 -std=c11
-LFLAGS:=-lm -lSDL2
+LFLAGS:=-lSDL2main  -L. -lSDL2
 
 $(TARGET): main.o ihm.o calcul.o conversion.o
 	gcc $(LFLAGS) -o $(TARGET) main.o ihm.o calcul.o conversion.o
@@ -16,3 +16,5 @@ ihm.o: ihm.c ihm.h
 
 conversion.o: conversion.c conversion.h
 	gcc $(CFLAGS) conversion.c
+clean:
+	del *.o *.exe
