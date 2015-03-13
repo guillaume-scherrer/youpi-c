@@ -1,4 +1,4 @@
-TARGET:=prog
+TARGET:=prog.exe
 CFLAGS:=-c -O2 -std=c11
 LFLAGS:=-lSDL2 -lSDL2_ttf
 
