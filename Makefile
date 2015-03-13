@@ -1,6 +1,10 @@
 TARGET:=prog
 CFLAGS:=-c -O2 -std=c11
-LFLAGS:=-lm -lSDL2
+LFLAGS:=-lSDL2 -lSDL2_ttf
+
+ifeq ($(OS),Windows_NT)
+	LFLAGS+=-lSDL2main -L.
+endif
 
 $(TARGET): main.o ihm.o calcul.o conversion.o
 	gcc $(LFLAGS) -o $(TARGET) main.o ihm.o calcul.o conversion.o
@@ -16,3 +20,6 @@ ihm.o: ihm.c ihm.h
 
 conversion.o: conversion.c conversion.h
 	gcc $(CFLAGS) conversion.c
+
+clean:
+	rm *.o *.exe
