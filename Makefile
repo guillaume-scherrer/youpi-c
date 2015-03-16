@@ -1,10 +1,11 @@
 TARGET:=prog.exe
 CFLAGS:=-c -O2 -std=c11
-LFLAGS:=-lSDL2 -lSDL2_ttf
 
 ifeq ($(OS),Windows_NT)
-	LFLAGS+=-lSDL2main -L.
+	LFLAGS:=-lmingw32 -lSDL2main
 endif
+
+LFLAGS+=-lSDL2 -lSDL2_ttf -L.
 
 $(TARGET): main.o ihm.o calcul.o conversion.o
 	gcc $(LFLAGS) -o $(TARGET) main.o ihm.o calcul.o conversion.o

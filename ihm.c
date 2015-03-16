@@ -42,13 +42,11 @@ void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount)
 	static const char baseMessage[] = "Nombre: ";
 	static const char numMessage[] = "%d";
 	char tmp[MAX_STRING_SIZE];
-	int numDone = 0;
 	int stop = 0;
+	int numDone = 0;
 	int number = 0;
 	int numSize = 0;
 	SDL_Event event;
-	
-	// sprintf(tmp, numMessage, number);
 	
 	SDL_SetRenderDrawColor(renderer, 31, 31, 31, 255);
 	SDL_RenderClear(renderer);
@@ -90,7 +88,7 @@ void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount)
 					++numDone;
 					numSize = 0;
 					text->rect.x = 0;
-					text->rect.y = text->rect.h;
+					text->rect.y += text->rect.h;
 					
 					changeText(renderer, text, baseMessage);
 					SDL_RenderCopy(renderer, text->texture, NULL, &(text->rect));
