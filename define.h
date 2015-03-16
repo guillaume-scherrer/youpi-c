@@ -1,0 +1,2 @@
+#define MAX_STRING_SIZE 25
+#define MAX_ROMAN_NUMBER 4000

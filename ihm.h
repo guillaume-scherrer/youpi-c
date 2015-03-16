@@ -14,4 +14,6 @@ typedef struct text_t
 
 void ihm(int* e1, int* e2);
 
+void loop(SDL_Renderer* renderer, text_t* text);
+
 void changeText(SDL_Renderer* renderer, text_t* text, char* content);
