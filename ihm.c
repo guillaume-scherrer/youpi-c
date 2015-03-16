@@ -8,6 +8,7 @@ void ihm(int* e1, int* e2)
 	static SDL_Window* window = NULL;
 	static SDL_Renderer* renderer = NULL;
 	text_t text;
+	int* numbers[] = {e1, e2};
 	
 	text.font = NULL;
 	text.content = NULL;
@@ -24,7 +25,7 @@ void ihm(int* e1, int* e2)
 	text.font = TTF_OpenFont("./SourceCodePro-Regular.otf", 64);
 	changeText(renderer, &text, "Nombre: ");
 	
-	loop(renderer, &text);
+	loop(renderer, &text, numbers, 2);
 	
 	SDL_DestroyTexture(text.texture);
 	SDL_FreeSurface(text.content);
@@ -37,15 +38,19 @@ void ihm(int* e1, int* e2)
 	SDL_Quit();
 }
 
-void loop(SDL_Renderer* renderer, text_t* text)
+void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount)
 {
-	static char message[] = "Nombre: %d";
+	static const char message[] = "Nombre: %d";
+	char tmp[MAX_STRING_SIZE];
+	int numDone = 0;
 	int stop = 0;
+	int number = 0;
+	int numSize = 0;
 	SDL_Event event;
 	
 	SDL_SetRenderDrawColor(renderer, 31, 31, 31, 255);
 	
-	while(!stop)
+	while(!stop && numDone < 2)
 	{
 		SDL_WaitEvent(&event);
 		
@@ -58,16 +63,24 @@ void loop(SDL_Renderer* renderer, text_t* text)
 			
 			case SDL_KEYDOWN:
 			{
-				printf("%d\n", event.key.keysym.sym);
-				
-				if(event.key.keysym.sym >= SDLK_KP_1 && event.key.keysym.sym <= SDLK_KP_0)
+				if(numSize < 4 && event.key.keysym.sym >= SDLK_KP_1 && event.key.keysym.sym <= SDLK_KP_0)
 				{
-					char tmp[MAX_STRING_SIZE];
-					
-					sprintf(tmp, message, event.key.keysym.sym == SDLK_KP_0 ?
+					number *= 10;
+					number += event.key.keysym.sym == SDLK_KP_0 ?
 						0:
-						event.key.keysym.sym - SDLK_KP_1 + 1);
+						event.key.keysym.sym - SDLK_KP_1 + 1;
 					
+					++numSize;
+					
+					sprintf(tmp, message, number);
+					changeText(renderer, text, tmp);
+				} else if(event.key.keysym.sym == SDLK_RETURN)
+				{
+					*(numbers[numDone]) = number;
+					number = 0;
+					++numDone;
+					
+					sprintf(tmp, message, number);
 					changeText(renderer, text, tmp);
 				} else if(event.key.keysym.sym == SDLK_ESCAPE)
 				{
