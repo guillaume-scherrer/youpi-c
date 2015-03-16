@@ -13,7 +13,7 @@ void ihm(int* e1, int* e2)
 	text.font = NULL;
 	text.content = NULL;
 	text.texture = NULL;
-	text.rect = (SDL_Rect){10, 10, 0, 64};
+	text.rect = (SDL_Rect){0, 0, 0, 64};
 	text.color = (SDL_Color){255, 255, 255, 255};
 	
 	SDL_Init(SDL_INIT_VIDEO);
@@ -23,7 +23,6 @@ void ihm(int* e1, int* e2)
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 	
 	text.font = TTF_OpenFont("./SourceCodePro-Regular.otf", 64);
-	changeText(renderer, &text, "Nombre: ");
 	
 	loop(renderer, &text, numbers, 2);
 	
@@ -40,7 +39,8 @@ void ihm(int* e1, int* e2)
 
 void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount)
 {
-	static const char message[] = "Nombre: %d";
+	static const char baseMessage[] = "Nombre: ";
+	static const char numMessage[] = "%d";
 	char tmp[MAX_STRING_SIZE];
 	int numDone = 0;
 	int stop = 0;
@@ -48,7 +48,16 @@ void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount)
 	int numSize = 0;
 	SDL_Event event;
 	
+	// sprintf(tmp, numMessage, number);
+	
 	SDL_SetRenderDrawColor(renderer, 31, 31, 31, 255);
+	SDL_RenderClear(renderer);
+	
+	changeText(renderer, text, baseMessage);
+	SDL_RenderCopy(renderer, text->texture, NULL, &(text->rect));
+	text->rect.x = text->rect.w;
+	
+	changeText(renderer, text, "");
 	
 	while(!stop && numDone < 2)
 	{
@@ -72,7 +81,7 @@ void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount)
 					
 					++numSize;
 					
-					sprintf(tmp, message, number);
+					sprintf(tmp, numMessage, number);
 					changeText(renderer, text, tmp);
 				} else if(event.key.keysym.sym == SDLK_RETURN)
 				{
@@ -80,9 +89,15 @@ void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount)
 					number = 0;
 					++numDone;
 					numSize = 0;
+					text->rect.x = 0;
+					text->rect.y = text->rect.h;
 					
-					sprintf(tmp, message, number);
-					changeText(renderer, text, tmp);
+					changeText(renderer, text, baseMessage);
+					SDL_RenderCopy(renderer, text->texture, NULL, &(text->rect));
+					text->rect.x = text->rect.w;
+					
+					changeText(renderer, text, "");
+					
 				} else if(event.key.keysym.sym == SDLK_ESCAPE)
 				{
 					stop = 1;
@@ -93,13 +108,12 @@ void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount)
 				break;
 		}
 		
-		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, text->texture, NULL, &(text->rect));
 		SDL_RenderPresent(renderer);
 	}
 }
 
-void changeText(SDL_Renderer* renderer, text_t* text, char* content)
+void changeText(SDL_Renderer* renderer, text_t* text, const char* content)
 {
 	if(text->content)
 	{
