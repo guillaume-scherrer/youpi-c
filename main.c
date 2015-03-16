@@ -8,12 +8,14 @@
 
 int main(int argc, char** argv)
 {
+    int e1 = 0;
+    int e2 = 0;
     char* nRom = NULL;
     
-    ihm(NULL, NULL);
+    ihm(&e1, &e2);
     
-    nRom = conversion(atoi(argv[1]));
-    printf("%s\n", nRom);
+    nRom = conversion(calcul(e1, e2));
+    printf("nRom: %s\ne1: %d\ne2: %d\n", nRom, e1, e2);
     
     if(nRom)
     {

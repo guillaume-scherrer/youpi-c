@@ -79,6 +79,7 @@ void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount)
 					*(numbers[numDone]) = number;
 					number = 0;
 					++numDone;
+					numSize = 0;
 					
 					sprintf(tmp, message, number);
 					changeText(renderer, text, tmp);
