@@ -1,1 +1,0 @@
-#include "ecriture_traj.h"

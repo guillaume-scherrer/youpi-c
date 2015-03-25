@@ -2,11 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h> 
-#include <math.h>
-#include "define.h"
+#define nb_point_lettre 20
 void lettresXYZ(char* str, float* tx, float* ty, float * tz, int* ttr, int* np){
 	int i,j,k, x;
-	float z,t;
+	float z;
 	
 
 	for (i = 0; i < nb_point_lettre; ++i)
@@ -19,8 +18,7 @@ void lettresXYZ(char* str, float* tx, float* ty, float * tz, int* ttr, int* np){
 	for (i = 0; i < strlen(str); ++i)
 	{
 		/* z=z*i pour le décalage */
-		switch(str[i])
-		{
+		switch(str[i]){
 		    case 'X'  :
 		       for (z = -128.5; z >= -139.5; --z)
 		       {
@@ -100,9 +98,22 @@ void lettresXYZ(char* str, float* tx, float* ty, float * tz, int* ttr, int* np){
 		   			printf("%f, %f, %f\n", tx[i], ty[i], tz[i] );
 			   }
 		       break; 
-		    
-		    case 'L'  :
+		    case 'D'  :
+		   
+		       break; 
+		    case 'C'  :
 		       
+		       break;
+		    case 'L'  :
+		       for (x=145; x<=156; x++)
+		       {
+		       	printf("%f\n",z );
+					tx[j] = x;
+					ty[j] = 50;
+					tz[j] = -139.5;
+					(*np)++;
+		   			printf("%f, %f, %f\n", tx[i], ty[i], tz[i] );
+			   }
 			   for (z = -139.5; z <= -128.5; z++)
 		       {
 		       	printf("%f\n",z );
@@ -141,40 +152,7 @@ void lettresXYZ(char* str, float* tx, float* ty, float * tz, int* ttr, int* np){
 					(*np)++;
 		   			printf("%f, %f, %f\n", tx[i], ty[i], tz[i] );
 			   }
-			   break;
-		    case 'D'  :
-		   		for (t = 0; t <= 3; t=t+0.1)
-		       {
-		       		printf("%f\n",t );
-					tx[j] = 145+5.5*sin(t);
-					ty[j] = 50;
-					tz[j] = -139.5+4.5*cos(t);
-					(*np)++;
-		   			printf("%f, %f, %f\n", tx[i], ty[i], tz[i] );
-			   }
-
-			   for (x=145; x<=156; x++)
-		       {
-		       	printf("%f\n",z );
-					tx[j] = x;
-					ty[j] = 50;
-					tz[j] = -139.5;
-					(*np)++;
-		   			printf("%f, %f, %f\n", tx[i], ty[i], tz[i] );
-			   }
-		       break; 
-		    case 'C'  :
-		     	for (t = 0; t <= 3; t=t+0.1)
-		       {
-		       		printf("%f\n",t );
-					tx[j] = 145+5.5*sin(t);
-					ty[j] = 50;
-					tz[j] = -139.5+4.5*cos(t);
-					(*np)++;
-		   			printf("%f, %f, %f\n", tx[i], ty[i], tz[i] );
-			   }
-		       break; 
-		       
+		    
 		       
 		}
 	}

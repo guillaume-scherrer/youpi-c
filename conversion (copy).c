@@ -16,7 +16,7 @@ for( i = 0; i < 7; ++i)
 		strcat(nRom, ref[i - 1]);
 		somme %= nums[i + 1];
 		} else
-			{	
+			{
 			if(somme / nums[i] == 4)
 			{
 				strcat(nRom, ref[i]);

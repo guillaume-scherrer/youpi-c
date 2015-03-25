@@ -1,9 +1,9 @@
 TARGET:=prog
 CFLAGS:=-c -O2 -std=c11
-LFLAGS:=-lSDL2main  -L. -lSDL2
+LFLAGS:=-lSDL2main  -L. -lSDL2 -lm
 
 $(TARGET): main.o calcul.o conversion.o lettresXYZ.o
-	gcc $(LFLAGS) -o $(TARGET) main.o calcul.o conversion.o lettresXYZ.o
+	gcc  -o $(TARGET) main.o calcul.o conversion.o lettresXYZ.o $(LFLAGS)
 
 main.o: main.c calcul.h
 	gcc $(CFLAGS) main.c
@@ -17,4 +17,4 @@ lettresXYZ.o: lettresXYZ.c lettresXYZ.h
 conversion.o: conversion.c conversion.h
 	gcc $(CFLAGS) conversion.c
 clean:
-	del *.o *.exe
+	rm *.o *.exe
