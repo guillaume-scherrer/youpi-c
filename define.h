@@ -1,1 +1,1 @@
-#define nb_point_lettre 20
+#define nb_point_lettre 100
