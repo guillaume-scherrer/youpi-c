@@ -7,12 +7,8 @@
 #define OFFSET_Z -139.5
 #define CELL_X 11
 #define CELL_Z 9
-#define M_PI 3.141592653589793238
+#define PI 3.141592653589793238
 #define BACK_COLOR (SDL_Color){ 191, 191, 191, 255 }
 #define BACK_SELECT_COLOR (SDL_Color){ 255, 255, 255, 255 }
 #define FRONT_COLOR (SDL_Color){ 0, 0, 0, 255 }
-<<<<<<< HEAD
-#define nb_point_lettre 100	
-=======
 #define nb_point_lettre 100
->>>>>>> 6260d677738e8792f7749b4103f3c697bcc23693
