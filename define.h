@@ -1,1 +1,0 @@
-#define nb_point_lettre 100
