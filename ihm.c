@@ -1,9 +1,11 @@
-#include <stdio.h>
 #include <string.h>
 #include "ihm.h"
 #include "calcul.h"
 #include "conversion.h"
+#include "lettresXYZ.h"
 #include "define.h"
+
+#include <stdio.h> // Test
 
 void ihm(int* e1, int* e2)
 {
@@ -12,6 +14,7 @@ void ihm(int* e1, int* e2)
     SDL_Rect rect1 = { 16, 16, 0, 48 };
     SDL_Rect rect2 = { 16, 80, 0, 48 };
     SDL_Rect rectV = { 480, 16, 0, 48 };
+    SDL_Rect rectD = { 16, 144, 2 * SHEET_SIZE_Z, 2 * SHEET_SIZE_X };
     selection_t button = NONE;
     char msg1[] = "Nombre 1:    ";
     char msg2[] = "Nombre 2:    ";
@@ -20,6 +23,7 @@ void ihm(int* e1, int* e2)
     gfx_text_t val;
     
     gfx_manager(CREATE);
+    gfx_clear(31, 31, 31, 255);
     
     *e1 = 0;
     *e2 = 0;
@@ -27,7 +31,8 @@ void ihm(int* e1, int* e2)
     num2 = gfx_createText(rect2, BACK_COLOR, FRONT_COLOR, msg2);
     val = gfx_createText(rectV, BACK_COLOR, FRONT_COLOR, "Valider");
     
-    gfx_clear(31, 31, 31, 255);
+    gfx_renderText(val);
+    gfx_renderQuad(rectD, BACK_COLOR);
     
     while(!stop)
     {
@@ -54,7 +59,7 @@ void ihm(int* e1, int* e2)
                     num2.color = BACK_SELECT_COLOR;
                 } else if(clicked(event, val.rect))
                 {
-                    stop = 1;
+                    plotData(rectD, *e1, *e2);
                 } else
                 {
                     button = NONE;
@@ -83,12 +88,11 @@ void ihm(int* e1, int* e2)
                 
                 if(button != NONE && msg[strlen(msg) - 1] == ' ' && event.key.keysym.sym >= SDLK_KP_1 && event.key.keysym.sym <= SDLK_KP_0)
                 {
-                    int add = event.key.keysym.sym == SDLK_KP_0 ?
-                        0:
-                        event.key.keysym.sym - SDLK_KP_1 + 1;
+                    int add = event.key.keysym.sym == SDLK_KP_0 ? 0 : event.key.keysym.sym - SDLK_KP_1 + 1;
                     
                     *e *= 10;
                     *e += add;
+                    
                     updateNum(num, msg, add, FRONT_COLOR);
                 }
             } break;
@@ -96,14 +100,12 @@ void ihm(int* e1, int* e2)
         
         gfx_renderText(num1);
         gfx_renderText(num2);
-        gfx_renderText(val);
         gfx_render();
     }
     
     gfx_destroyText(num1);
     gfx_destroyText(num2);
     gfx_destroyText(val);
-    
     gfx_manager(DESTROY);
 }
 
@@ -131,7 +133,36 @@ int clicked(SDL_Event event, SDL_Rect rect)
     return event.button.x >= rect.x && event.button.x < rect.x + rect.w && event.button.y >= rect.y && event.button.y < rect.y + rect.h;
 }
 
-static SDL_Renderer* gfx_manager(gfx_action_t action)
+void plotData(SDL_Rect sheet, int e1, int e2)
+{
+    int i;
+    int np;
+    char* romanNumber = conversion(calcul(e1, e2));
+    float tx[MAX_XYZ];
+    float ty[MAX_XYZ];
+    float tz[MAX_XYZ];
+    int ttr[MAX_XYZ];
+    
+    lettresXYZ(romanNumber, tx, ty, tz, ttr, &np);
+    
+    if(romanNumber)
+    {
+        free(romanNumber);
+    }
+    
+    gfx_renderQuad(sheet, BACK_COLOR);
+    SDL_SetRenderDrawColor(gfx_manager(GET), 0, 0, 0, 255);
+    
+    for(i = 0; i < np; ++i)
+    {
+        SDL_RenderDrawPoint(gfx_manager(GET), tz[i] * 2 + sheet.x + sheet.w / 2, -tx[i] * 2 + sheet.y + sheet.h);
+        printf("%d: %f # %f\n", i, tz[i] * 2 + sheet.x + sheet.w / 2, -tx[i] * 2 + sheet.y + sheet.h);
+    }
+    
+    gfx_render();
+}
+
+SDL_Renderer* gfx_manager(gfx_action_t action)
 {
     static SDL_Window* window = NULL;
     static SDL_Renderer* renderer = NULL;

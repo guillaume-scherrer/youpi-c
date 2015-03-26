@@ -39,7 +39,9 @@ void updateNum(gfx_text_t* num, char* msg, int add, SDL_Color frontColor);
 
 int clicked(SDL_Event event, SDL_Rect rect);
 
-static SDL_Renderer* gfx_manager(gfx_action_t action);
+void plotData(SDL_Rect sheet, int e1, int e2);
+
+SDL_Renderer* gfx_manager(gfx_action_t action);
 
 void gfx_clear(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 
