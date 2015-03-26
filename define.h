@@ -9,3 +9,4 @@
 #define BACK_COLOR (SDL_Color){ 191, 191, 191, 255 }
 #define BACK_SELECT_COLOR (SDL_Color){ 255, 255, 255, 255 }
 #define FRONT_COLOR (SDL_Color){ 0, 0, 0, 255 }
+#define nb_point_lettre 100	

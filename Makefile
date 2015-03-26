@@ -6,9 +6,9 @@ ifeq ($(OS),Windows_NT)
 	LFLAGS:=-lmingw32 -lSDL2main
 endif
 
-LFLAGS+=-lSDL2 -lSDL2_ttf -lm -L.
+LFLAGS+=-lSDL2 -lSDL2_ttf -lm -L. 
 
-$(TARGET): main.o calcul.o ihm.o conversion.o lettresXYZ.o lettresTheta.o lettresMoteur.o ecritureTraj.o
+$(TARGET): main.o calcul.o ihm.o conversion.o lettresXYZ.o lettresTheta.o lettresMoteur.o ecritureTraj.o ftd2xx.exe
 	gcc -o $(TARGET) $^ $(LFLAGS)
 
 main.o: main.c
