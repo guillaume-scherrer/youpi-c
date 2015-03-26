@@ -12,16 +12,6 @@ typedef struct
     SDL_Color color;
 } text_t;
 
-// void ihm(int* e1, int* e2);
-
-// void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount);
-
-// void changeText(SDL_Renderer* renderer, text_t* text, const char* content);
-
-// void newLine(SDL_Renderer* renderer, text_t* text, const char* content);
-
-// Test
-
 typedef enum
 {
     NONE,

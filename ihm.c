@@ -5,148 +5,6 @@
 #include "conversion.h"
 #include "define.h"
 
-// void ihm(int* e1, int* e2)
-// {
-//     static SDL_Window* window = NULL;
-//     static SDL_Renderer* renderer = NULL;
-//     text_t text;
-//     int* numbers[] = {e1, e2};
-//
-//     text.font = NULL;
-//     text.content = NULL;
-//     text.texture = NULL;
-//     text.rect = (SDL_Rect){0, 0, 0, 64};
-//     text.color = (SDL_Color){255, 255, 255, 255};
-//
-//     SDL_Init(SDL_INIT_VIDEO);
-//     TTF_Init();
-//
-//     window = SDL_CreateWindow("Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
-//     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-//
-//     text.font = TTF_OpenFont("./SourceCodePro-Regular.otf", 64);
-//
-//     loop(renderer, &text, numbers, 2);
-//
-//     SDL_DestroyTexture(text.texture);
-//     SDL_FreeSurface(text.content);
-//     TTF_CloseFont(text.font);
-//
-//     SDL_DestroyRenderer(renderer);
-//     SDL_DestroyWindow(window);
-//
-//     TTF_Quit();
-//     SDL_Quit();
-// }
-
-// void loop(SDL_Renderer* renderer, text_t* text, int** numbers, int numCount)
-// {
-//     static const char baseMessage[] = "Nombre: ";
-//     static const char numMessage[] = "%d";
-//     char tmp[MAX_STRING_SIZE];
-//     int stop = 0;
-//     int numDone = 0;
-//     int number = 0;
-//     int numSize = 0;
-//     SDL_Event event;
-//
-//     SDL_SetRenderDrawColor(renderer, 31, 31, 31, 255);
-//     SDL_RenderClear(renderer);
-//
-//     newLine(renderer, text, baseMessage);
-//
-//     changeText(renderer, text, "");
-//
-//     while(!stop && numDone < 2)
-//     {
-//         SDL_WaitEvent(&event);
-//
-//         switch(event.type)
-//         {
-//             case SDL_QUIT:
-//             {
-//                 stop = 1;
-//             } break;
-//
-//             case SDL_KEYDOWN:
-//             {
-//                 if(numSize < 4 && event.key.keysym.sym >= SDLK_KP_1 && event.key.keysym.sym <= SDLK_KP_0)
-//                 {
-//                     number *= 10;
-//                     number += event.key.keysym.sym == SDLK_KP_0 ?
-//                         0:
-//                         event.key.keysym.sym - SDLK_KP_1 + 1;
-//
-//                     ++numSize;
-//
-//                     sprintf(tmp, numMessage, number);
-//                     changeText(renderer, text, tmp);
-//                 } else if(event.key.keysym.sym == SDLK_RETURN)
-//                 {
-//                     *(numbers[numDone]) = number;
-//                     number = 0;
-//                     ++numDone;
-//                     numSize = 0;
-//                     text->rect.x = 0;
-//                     text->rect.y += text->rect.h;
-//
-//                     if(numDone < 2)
-//                     {
-//                         newLine(renderer, text, baseMessage);
-//                     }
-//
-//                     changeText(renderer, text, "");
-//
-//                 } else if(event.key.keysym.sym == SDLK_ESCAPE)
-//                 {
-//                     stop = 1;
-//                 }
-//             } break;
-//
-//             default:
-//                 break;
-//         }
-//
-//         SDL_RenderCopy(renderer, text->texture, NULL, &(text->rect));
-//         SDL_RenderPresent(renderer);
-//     }
-//
-//     char* result = conversion(calcul(*numbers[0], *numbers[1]));
-//
-//     changeText(renderer, text, result);
-//     SDL_RenderCopy(renderer, text->texture, NULL, &(text->rect));
-//     SDL_RenderPresent(renderer);
-//     SDL_Delay(1500);
-//
-//     free(result);
-// }
-
-// void changeText(SDL_Renderer* renderer, text_t* text, const char* content)
-// {
-//     if(text->content)
-//     {
-//         SDL_FreeSurface(text->content);
-//     }
-//
-//     if(text->texture)
-//     {
-//         SDL_DestroyTexture(text->texture);
-//     }
-//
-//     text->content = TTF_RenderText_Blended(text->font, content, text->color);
-//     text->texture = SDL_CreateTextureFromSurface(renderer, text->content);
-//     text->rect.w = text->rect.h / 2 * strlen(content);
-// }
-
-// void newLine(SDL_Renderer* renderer, text_t* text, const char* content)
-// {
-//     changeText(renderer, text, content);
-//     SDL_RenderCopy(renderer, text->texture, NULL, &(text->rect));
-//     text->rect.x = text->rect.w;
-// }
-
-// Test
-
 void ihm(int* e1, int* e2)
 {
     int stop = 0;
@@ -170,9 +28,6 @@ void ihm(int* e1, int* e2)
     val = gfx_createText(rectV, BACK_COLOR, FRONT_COLOR, "Valider");
     
     gfx_clear(31, 31, 31, 255);
-    gfx_renderText(num1);
-    gfx_renderText(num2);
-    gfx_renderText(val);
     
     while(!stop)
     {
@@ -269,7 +124,6 @@ void updateNum(gfx_text_t* num, char* msg, int add, SDL_Color frontColor)
     
     gfx_destroyText(*num);
     *num = gfx_createText(num->rect, num->color, frontColor, msg);
-    // gfx_renderText(*num);
 }
 
 int clicked(SDL_Event event, SDL_Rect rect)
