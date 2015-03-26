@@ -5,8 +5,6 @@
 #include "lettresXYZ.h"
 #include "define.h"
 
-#include <stdio.h> // Test
-
 void ihm(int* e1, int* e2)
 {
     int stop = 0;
@@ -92,7 +90,6 @@ void ihm(int* e1, int* e2)
                     
                     *e *= 10;
                     *e += add;
-                    
                     updateNum(num, msg, add, FRONT_COLOR);
                 }
             } break;
@@ -156,7 +153,6 @@ void plotData(SDL_Rect sheet, int e1, int e2)
     for(i = 0; i < np; ++i)
     {
         SDL_RenderDrawPoint(gfx_manager(GET), tz[i] * 2 + sheet.x + sheet.w / 2, -tx[i] * 2 + sheet.y + sheet.h);
-        printf("%d: %f # %f\n", i, tz[i] * 2 + sheet.x + sheet.w / 2, -tx[i] * 2 + sheet.y + sheet.h);
     }
     
     gfx_render();

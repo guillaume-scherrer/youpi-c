@@ -1,6 +1,8 @@
 #define MAX_STRING_SIZE 25
 #define MAX_ROMAN_NUMBER 4000
 #define MAX_XYZ 5000
+#define SHEET_SIZE_X 210
+#define SHEET_SIZE_Z 297
 #define OFFSET_X 145
 #define OFFSET_Z -139.5
 #define CELL_X 11
