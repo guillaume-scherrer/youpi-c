@@ -140,8 +140,8 @@ void ellipse(float* tx, float* tz, int* ttr, int* np, float* data)
     
     for(i = 0, ang = data[4]; ang <= data[5]; ++i, ang += 3)
     {
-        tx[*np + i] = data[0] + sin(ang * M_PI / 180) * data[2];
-        tz[*np + i] = data[1] + cos(ang * M_PI / 180) * data[3];
+        tx[*np + i] = data[0] + sin(ang * PI / 180) * data[2];
+        tz[*np + i] = data[1] + cos(ang * PI / 180) * data[3];
         ttr[*np + i] = i != 0;
     }
     
