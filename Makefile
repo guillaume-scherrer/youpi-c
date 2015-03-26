@@ -5,10 +5,10 @@ ifeq ($(OS),Windows_NT)
 	LFLAGS:=-lmingw32 -lSDL2main
 endif
 
-LFLAGS+=-lSDL2 -lSDL2_ttf -L.
+LFLAGS+=-lSDL2 -lSDL2_ttf -lm -L.
 
-$(TARGET): main.o ihm.o calcul.o conversion.o
-	gcc $(LFLAGS) -o $(TARGET) main.o ihm.o calcul.o conversion.o
+$(TARGET): main.o ihm.o calcul.o conversion.o lettresXYZ.o ecritureTraj.o
+	gcc -o $(TARGET) main.o ihm.o calcul.o conversion.o lettresXYZ.o ecritureTraj.o $(LFLAGS)
 
 main.o: main.c calcul.h ihm.h
 	gcc $(CFLAGS) main.c
@@ -21,6 +21,12 @@ ihm.o: ihm.c ihm.h
 
 conversion.o: conversion.c conversion.h
 	gcc $(CFLAGS) conversion.c
+
+lettresXYZ.o: lettresXYZ.c lettresXYZ.h
+	gcc $(CFLAGS) lettresXYZ.c
+
+ecritureTraj.o: ecritureTraj.c ecritureTraj.h
+	gcc $(CFLAGS) ecritureTraj.c
 
 clean:
 	rm *.o *.exe

@@ -5,6 +5,8 @@
 
 #include <string.h> // test
 #include <stdio.h>
+#include "lettresXYZ.h"
+#include "define.h"
 
 int main(int argc, char** argv)
 {
@@ -21,6 +23,20 @@ int main(int argc, char** argv)
     {
         free(nRom);
     }
+    
+    // char str[] = "MDCLXVI";
+    // float* tx = malloc(MAX_XYZ * sizeof(float));
+    // float* ty = malloc(MAX_XYZ * sizeof(float));
+    // float* tz = malloc(MAX_XYZ * sizeof(float));
+    // int* ttr = malloc(MAX_XYZ * sizeof(int));
+    // int np;
+    //
+    // lettresXYZ(str, tx, ty, tz, ttr, &np);
+    //
+    // free(tx);
+    // free(ty);
+    // free(tz);
+    // free(ttr);
     
     return 0;
 }

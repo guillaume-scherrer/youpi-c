@@ -4,7 +4,7 @@
 void ecritureTraj(float* tt1, float* tt2, float* tt3, int* ttr, int np)
 {
     int i;
-    FILE* out = fopen("traj.dat", "w");
+    FILE* out = fopen("trajectoire.dat", "w");
     
     for(i = 0; i < np; ++i)
     {
