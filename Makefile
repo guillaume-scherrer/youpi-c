@@ -1,21 +1,40 @@
-TARGET:=prog
+TARGET:=prog.exe
 CFLAGS:=-c -O2 -std=c11
-LFLAGS:=-lm -lSDL2
+COMMAND=gcc $(CFLAGS) $<
 
-$(TARGET): main.o ihm.o calcul.o conversion.o lettresXYZ.o
-	gcc $(LFLAGS) -o $(TARGET) main.o ihm.o calcul.o conversion.o lettresXYZ.o
+ifeq ($(OS),Windows_NT)
+	LFLAGS:=-lmingw32 -lSDL2main
+endif
 
-main.o: main.c calcul.h ihm.h
-	gcc $(CFLAGS) main.c
+LFLAGS+=-lSDL2 -lSDL2_ttf -lm -L.
+
+$(TARGET): main.o calcul.o ihm.o conversion.o lettresXYZ.o lettresTheta.o lettresMoteur.o ecritureTraj.o
+	gcc -o $(TARGET) $^ $(LFLAGS)
+
+main.o: main.c
+	$(COMMAND)
 
 calcul.o: calcul.c calcul.h
-	gcc $(CFLAGS) calcul.c
+	$(COMMAND)
 
 ihm.o: ihm.c ihm.h
-	gcc $(CFLAGS) ihm.c
+	$(COMMAND)
 
 conversion.o: conversion.c conversion.h
-	gcc $(CFLAGS) conversion.c
+	$(COMMAND)
 
 lettresXYZ.o: lettresXYZ.c lettresXYZ.h
-	gcc $(CFLAGS) lettresXYZ.c
+	$(COMMAND)
+
+lettresTheta.o: lettresTheta.c lettresTheta.h
+	$(COMMAND)
+
+lettresMoteur.o: lettresMoteur.c lettresMoteur.h
+	$(COMMAND)
+
+ecritureTraj.o: ecritureTraj.c ecritureTraj.h
+	$(COMMAND)
+
+clean:
+	-@rm *.o *.exe
+	@echo Directory purged.

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "ecriture_Traj.h"
+#include "ecritureTraj.h"
 void ecritureTraj(float* tt1, float* tt2, float* tt3, int* ttr, int np)
 {
 	int i, written;

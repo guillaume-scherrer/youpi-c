@@ -1,4 +1,4 @@
-#include "lettres_moteur.h"
+#include "lettresMoteur.h"
 #include "math.h"
 #include "stdio.h"
 void lettresMoteur(float* tt1, float* tt2, float* tt3, int* ttr, int np){
