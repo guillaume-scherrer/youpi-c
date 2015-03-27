@@ -1186,7 +1186,7 @@ typedef void (GL_APIENTRYP GLDEBUGPROC)(GLenum source,GLenum type,GLuint id,GLen
 #define GL_SHADER                                               0x82E1
 #define GL_PROGRAM                                              0x82E2
 #define GL_QUERY                                                0x82E3
-/* PROGRAM_PIPELINE only in GL */                               
+/* PROGRAPIPELINE only in GL */                               
 #define GL_SAMPLER                                              0x82E6
 /* DISPLAY_LIST only in GL */                                   
 #define GL_MAX_LABEL_LENGTH                                     0x82E8
@@ -1424,7 +1424,7 @@ typedef struct __GLsync *GLsync;
 
 /* GL_EXT_debug_label */
 #ifndef GL_EXT_debug_label
-#define GL_PROGRAM_PIPELINE_OBJECT_EXT                          0x8A4F
+#define GL_PROGRAPIPELINE_OBJECT_EXT                          0x8A4F
 #define GL_PROGRAM_OBJECT_EXT                                   0x8B40
 #define GL_SHADER_OBJECT_EXT                                    0x8B48
 #define GL_BUFFER_OBJECT_EXT                                    0x9151
@@ -1508,7 +1508,7 @@ typedef struct __GLsync *GLsync;
 #define GL_ALL_SHADER_BITS_EXT                                  0xFFFFFFFF
 #define GL_PROGRAM_SEPARABLE_EXT                                0x8258
 #define GL_ACTIVE_PROGRAM_EXT                                   0x8259
-#define GL_PROGRAM_PIPELINE_BINDING_EXT                         0x825A
+#define GL_PROGRAPIPELINE_BINDING_EXT                         0x825A
 #endif
 
 /* GL_EXT_shader_framebuffer_fetch */

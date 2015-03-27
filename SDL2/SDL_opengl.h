@@ -1112,7 +1112,7 @@ extern "C" {
 /* reuse GL_ALL_SHADER_BITS */
 /* reuse GL_PROGRAM_SEPARABLE */
 /* reuse GL_ACTIVE_PROGRAM */
-/* reuse GL_PROGRAM_PIPELINE_BINDING */
+/* reuse GL_PROGRAPIPELINE_BINDING */
 /* Reuse tokens from ARB_shader_precision (none) */
 /* Reuse tokens from ARB_vertex_attrib_64bit - all are in GL 3.0 and 4.0 already */
 /* Reuse tokens from ARB_viewport_array - some are in GL 1.1 and ARB_provoking_vertex already */
@@ -2135,7 +2135,7 @@ extern "C" {
 #define GL_ALL_SHADER_BITS                0xFFFFFFFF
 #define GL_PROGRAM_SEPARABLE              0x8258
 #define GL_ACTIVE_PROGRAM                 0x8259
-#define GL_PROGRAM_PIPELINE_BINDING       0x825A
+#define GL_PROGRAPIPELINE_BINDING       0x825A
 #endif
 
 #ifndef GL_ARB_shader_precision

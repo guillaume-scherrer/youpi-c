@@ -72,7 +72,7 @@
 #endif
 #ifdef HAVE_MATH_H
 # if defined(__WINRT__)
-/* Defining _USE_MATH_DEFINES is required to get M_PI to be defined on
+/* Defining _USE_MATH_DEFINES is required to get PI to be defined on
    WinRT.  See http://msdn.microsoft.com/en-us/library/4hwaceh6.aspx
    for more information.
 */
@@ -345,9 +345,9 @@ extern DECLSPEC int SDLCALL SDL_vsscanf(const char *text, const char *fmt, va_li
 extern DECLSPEC int SDLCALL SDL_snprintf(char *text, size_t maxlen, const char *fmt, ...);
 extern DECLSPEC int SDLCALL SDL_vsnprintf(char *text, size_t maxlen, const char *fmt, va_list ap);
 
-#ifndef HAVE_M_PI
-#ifndef M_PI
-#define M_PI    3.14159265358979323846264338327950288   /* pi */
+#ifndef HAVE_PI
+#ifndef PI
+#define PI    3.14159265358979323846264338327950288   /* pi */
 #endif
 #endif
 

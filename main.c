@@ -1,6 +1,6 @@
 #include <stdlib.h>
-#include <string.h> 
-#include <stdio.h> 
+#include <string.h>
+#include <stdio.h>
 #include "calcul.h"
 #include "conversion.h"
 #include "lettresXYZ.h"
@@ -23,10 +23,10 @@ int main(int argc, char** argv)
 	 {
 		str[i] = 'V';
 	 }
-	float* tx =NULL;
+	float* tx = NULL;
 	float* ty = NULL;
 	float* tz = NULL;
-	float* tt1 =NULL;
+	float* tt1 = NULL;
 	float* tt2 = NULL;
 	float* tt3 = NULL;
 	tx = malloc(sizeof(float)*nb_point_lettre);
@@ -42,8 +42,8 @@ int main(int argc, char** argv)
 	for (i = 0; i < (*np); ++i)
 	{
 		tx[i]=200;
-		ty[i]=25;
-		tz[i]=154;	
+		ty[i]=50;
+		tz[i]=154;
 	}
 	
   //  lettresXYZ(str, tx, ty, tz, ttr, np);
